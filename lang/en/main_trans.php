@@ -31,7 +31,7 @@ return [
     'Settings'=>'Settings',
     'Users'=>'Users',
     'Copyright' => 'Copyright',
-    'Name_Programer' => 'Rabie Abdelrahman All Rights Reserved'
-
+    'Name_Programer' => 'Rabie Abdelrahman All Rights Reserved',
+    'Delete successfully'=>'Delete successfully',
 
 ];

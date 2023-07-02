@@ -62,11 +62,96 @@
                                             data-target="#edit{{ $Grade->id }}"
                                             title="{{ trans('Grades_trans.Edit') }}"><i class="fa fa-edit"></i></button>
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#delete{{ $Grade->id }}"
+                                            data-target="#delete{{$Grade->id}}"
                                             title="{{ trans('Grades_trans.Delete') }}"><i
                                             class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
+
+
+                            {{--Edit Modal                     --}}
+                            <div class="modal fade" id="edit{{ $Grade->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
+                                                {{ trans('Grades_trans.edit_Grade') }}
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- add_form -->
+                                            <form action="{{route('grade.update')}}" method="POST">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="Name" class="mr-sm-2">{{ trans('Grades_trans.stage_name_ar') }}
+                                                            :</label>
+                                                        <input id="Name" type="text" value="{{$Grade->getTranslation('name','ar')}}" name="name" class="form-control" required >
+                                                        <input type="hidden" id="id" name="id" value="{{$Grade->id}}" class="form-control">
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="Name_en" class="mr-sm-2">{{ trans('Grades_trans.stage_name_en') }}
+                                                            :</label>
+                                                        <input type="text" class="form-control" value="{{$Grade->getTranslation('name','en')}}" name="name_en" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleFormControlTextarea1">{{ trans('Grades_trans.Notes') }}
+                                                        :</label>
+                                                    <textarea class="form-control" name="notes" id="exampleFormControlTextarea1"
+                                                              rows="3">{{$Grade->notes}}</textarea>
+                                                </div>
+                                                <br><br>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">{{ trans('Grades_trans.Close') }}</button>
+                                                    <button type="submit" class="btn btn-success">{{ trans('Grades_trans.submit') }}</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- delete_modal_Grade -->
+                            <div class="modal fade" id="delete{{$Grade->id}}" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title"
+                                                id="exampleModalLabel">
+                                                {{ trans('Grades_trans.delete_Grade') }}
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{route('grade.destroy' , 'test')}}" method="post">
+{{--                                                {{ method_field('Delete') }}--}}
+                                                @csrf
+                                                {{ trans('Grades_trans.Warning_Grade') }}
+                                                <input id="id" type="hidden" name="id" class="form-control"
+                                                       value="{{ $Grade->id }}">
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">{{ trans('Grades_trans.Close') }}</button>
+                                                    <button type="submit"
+                                                            class="btn btn-danger">{{ trans('Grades_trans.submit') }}</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endforeach
                         </tbody>
                     </table>
@@ -90,7 +175,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- add_form -->
-                    <form action="{{url('store')}}" method="POST">
+                    <form action="{{route('grades.store')}}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col">

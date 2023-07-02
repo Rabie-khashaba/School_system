@@ -28,7 +28,8 @@ return [
     'Settings'=>'الاعدادات',
     'Users'=>'المستخدمين',
     'Copyright' => 'جميع الحقوق محفوظة ',
-    'Name_Programer' => 'ربيع عبدالرحمن'
+    'Name_Programer' => 'ربيع عبدالرحمن',
+    'Delete successfully'=>'تم الحذف بنجاح'
 
 
 ];

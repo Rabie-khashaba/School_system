@@ -7,7 +7,7 @@ use Spatie\Translatable\HasTranslations; //
 
 class Grade extends Model
 {
-    use HasTranslations; //
+    use HasTranslations; // spital translable
     public $translatable = ['name']; //
 
 
@@ -15,5 +15,11 @@ class Grade extends Model
 
     protected $fillable =['name', 'notes','created_at' , 'updated_at'];
     public $timestamps = true;
+
+
+
+    public function Sections(){
+        return $this->hasMany('App\Models\Section','Grade_id');
+    }
 
 }

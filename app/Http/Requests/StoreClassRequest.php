@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreGradeRequest extends FormRequest
+class StoreClassRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,21 +22,19 @@ class StoreGradeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:grades,name->ar,'.$this->id,   // this->id     to allow edit in same id
-            'name_en' => 'required|unique:grades,name->en,'.$this->id,
+            'List_Classes.*.Name_class' => 'required|unique:classrooms,Name->ar,'.$this->id,
+            'List_Classes.*.Name_class_en' => 'required|unique:classrooms,Name->ar,'.$this->id,
         ];
     }
+
 
     public function messages()
     {
         return [
-            'name.required' => trans('validation.required'),
-            'name.unique' => trans('validation.unique'),
-            'name_en.required' => trans('validation.required'),
-            'name_en.unique' => trans('validation.unique'),
-
+            'Name_class.request'=>trans('validation.required'),
+            'Name.unique' => trans('validation.unique'),
+            'Name_class_en.request'=>trans('validation.required'),
+            'Name_class_en.unique' => trans('validation.unique'),
         ];
     }
-
-
 }
