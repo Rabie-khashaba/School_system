@@ -54,7 +54,9 @@ Route::group(
     //Sections
     Route::get('sections',[SectionController::class ,'index'])->name('sections.index');
     Route::post('storeSections',[SectionController::class ,'storeSections'])->name('Sections.store');
-
+    Route::post('updateSection',[SectionController::class ,'updateSection'])->name('Sections.update');
+    Route::post('destroySection',[SectionController::class ,'destroySection'])->name('Sections.destroy');
+    Route::get('classes/{id}',[SectionController::class ,'getClasses']);
 
 
 

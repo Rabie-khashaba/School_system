@@ -63,6 +63,7 @@
                             </thead>
                             <tbody>
 
+                            {{--  filter--}}
                             @if (isset($details))
 
                                     <?php $List_Classes = $details; ?>

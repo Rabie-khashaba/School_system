@@ -138,7 +138,7 @@ class GradeController extends Controller
   {
       // check if grade has classrooms and get grade_id(classrooms) in array
       $my_class_id = Classroom::where('Grade_id' , $request->id)->pluck('Grade_id');  // return all grade_id in array
-
+        //return $my_class_id;
       if ($my_class_id->count() == 0 ){
           $Grade = Grade::findOrFail($request->id);
           //return $Grade;

@@ -22,8 +22,12 @@ class StoreClassRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'List_Classes.*.Name_class' => 'required|unique:classrooms,Name->ar,'.$this->id,
-            'List_Classes.*.Name_class_en' => 'required|unique:classrooms,Name->ar,'.$this->id,
+//            'List_Classes.*.Name_class' => 'required|unique:classrooms,Name->ar,'.$this->id,
+//            'List_Classes.*.Name_class_en' => 'required|unique:classrooms,Name->en,'.$this->id,
+
+            'List_Classes.*.Name_class' => 'required',
+            'List_Classes.*.Name_class_en' => 'required',
+
         ];
     }
 
