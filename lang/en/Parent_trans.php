@@ -36,5 +36,7 @@ return [
     'Attachments' => 'Attachments',
     'Processes' => 'Processes',
 
+    'parent_warning'=>'Do You Sure of Delete This Parent',
+
 
 ];

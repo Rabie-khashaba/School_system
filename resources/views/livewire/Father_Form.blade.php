@@ -129,6 +129,7 @@
                 </div>
 
                 @if($updateMode)
+                    {{--Edit button--}}
                     <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="firstStepSubmit_edit"
                             type="button">{{trans('Parent_trans.Next')}}
                     </button>

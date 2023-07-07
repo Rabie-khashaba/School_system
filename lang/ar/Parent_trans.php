@@ -40,6 +40,9 @@ return [
     'Processes' => 'العمليات',
 
 
+    'parent_warning'=>'هل انت متأكد من حذف هذا الاب'
+
+
 
 
 
