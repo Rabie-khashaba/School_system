@@ -60,7 +60,9 @@ Route::group(
 
 
 
-
+    // Parents
+        Route::view('Add_parent','livewire.show_form')  // route to view directly
+;
 });
 
 
