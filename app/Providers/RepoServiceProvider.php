@@ -6,18 +6,18 @@ use App\Repository\TeacherRepository;
 use App\Repository\TeacherRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class RepoServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register services.
      */
     public function register(): void
     {
-
+        $this->app->bind(TeacherRepositoryInterface::class, TeacherRepository::class);
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap services.
      */
     public function boot(): void
     {

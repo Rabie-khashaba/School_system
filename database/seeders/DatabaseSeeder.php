@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Gender;
 use App\Models\Type_bloods;
 use Illuminate\Database\Seeder;
 
@@ -21,6 +22,15 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call([
             religionTableSeeder::class
+        ]);
+        $this->call([
+            SpecializationsTableSeeder::class
+        ]);
+        $this->call([
+            GenderTableSeeder::class
+        ]);
+        $this->call([
+            UsersTableSeeder::class
         ]);
     }
 }

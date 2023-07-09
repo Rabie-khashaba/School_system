@@ -4,9 +4,11 @@ use App\Http\Controllers\Classroom\ClassroomController;
 use App\Http\Controllers\Grades\GradeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Section\SectionController;
+use App\Http\Controllers\Teachers\TeacherController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -61,8 +63,12 @@ Route::group(
 
 
     // Parents
-        Route::view('Add_parent','livewire.show_form')  // route to view directly
-;
+    Route::view('Add_parent','livewire.show_form');  // route to view directly
+
+    //==============================Teachers============================
+    Route::resource('Teachers', TeacherController::class);
+
+
 });
 
 

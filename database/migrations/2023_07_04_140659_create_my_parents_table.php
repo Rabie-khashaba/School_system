@@ -37,6 +37,10 @@ return new class extends Migration
             $table->bigInteger('Blood_Type_Mother_id')->unsigned();
             $table->bigInteger('Religion_Mother_id')->unsigned();
             $table->string('Address_Mother');
+
+
+            //foreign
+
             $table->timestamps();
         });
     }
