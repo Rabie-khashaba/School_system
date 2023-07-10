@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Teachers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRequest;
+use Hamcrest\Thingy;
 use Illuminate\Http\Request;
 use App\Repository\TeacherRepositoryInterface;
+use Illuminate\View\View;
+
 class TeacherController extends Controller
 {
 
@@ -20,8 +24,9 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $xx=  $this->Teacher->getAllTeachers();
-        dd($xx);
+        $teachers=  $this->Teacher->getAllTeachers();
+        return view('pages.Teachers.Teachers',compact('teachers'));
+
     }
 
     /**
@@ -29,15 +34,19 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        $specializations = $this->Teacher->getSpecializations();
+        $genders = $this->Teacher->getGender();
+
+        return view('pages.Teachers.create',compact('specializations','genders'));
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        return $this->Teacher->StoreTeachers($request);
     }
 
     /**
@@ -51,24 +60,27 @@ class TeacherController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $specializations = $this->Teacher->getSpecializations();
+        $genders = $this->Teacher->getGender();
+        $Teachers = $this->Teacher->getEditTeachers($id);
+        return view('pages.Teachers.Edit',compact('Teachers','specializations','genders'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        return $this->Teacher->updateTeachers($request);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        return $this->Teacher->deleteTeacher($request);
     }
 }
