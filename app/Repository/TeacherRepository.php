@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Repository;
 use App\Models\Gender;
 use App\Models\Specialization;

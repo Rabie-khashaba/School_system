@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Section;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSections;
 use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\Section;
+use App\Models\Teacher;
+use App\Models\Teacher_Section;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
@@ -14,7 +17,9 @@ class SectionController extends Controller
         $Grades = Grade::with(['Sections'])->get();
         $listGrades = Grade::all();
         //return $Grades;
-        return view('pages.Sections.Sections',compact('Grades','listGrades'));
+        $teachers = Teacher::all();
+
+        return view('pages.Sections.Sections',compact('Grades','listGrades','teachers'));
     }
 
 
@@ -29,6 +34,9 @@ class SectionController extends Controller
             $my_sections->Status = 1;
             $my_sections->save();
 
+            //Add id in pivot table
+            $my_sections->teachers()->attach($request->teacher_id); // get id of teacher
+
             $notification = array(
                 'message' => 'Data Has Been Saved successfully',
                 'alert-type'=> 'success',
@@ -40,26 +48,34 @@ class SectionController extends Controller
 
     }
 
-    public function updateSection(Request $request){
-        //return $request;
+    public function updateSection(StoreSections $request){
+           //return $request;
         try {
 
-            $my_sections = Section::findOrFail($request->id);
+            $validated = $request->validated();
+            $Sections = Section::findOrFail($request->id);
 
-            if (isset($request->Status)){
-                $my_sections-> Status = 1 ;
+            $Sections->Name_Section = ['ar' => $request->Name_Section_Ar, 'en' => $request->Name_Section_En];
+            $Sections->Grade_id = $request->Grade_id;
+            $Sections->Class_id = $request->Class_id;
+
+            //Status Update
+            if(isset($request->Status)) {
+                $Sections->Status = 1;
+            } else {
+                $Sections->Status = 0;
             }
-            else{
-                $my_sections-> Status = 0 ;
+
+
+            // update pivot tABLE
+            if (isset($request->teacher_id)) {
+                $Sections->teachers()->sync($request->teacher_id);  // if select one teacher
+            }else {
+                $Sections->teachers()->sync(array());  // if select more than one teacher
             }
 
-            $my_sections->update([
-                $my_sections->Name_Section = ['ar'=>$request->Name_Section_Ar,'en'=>$request->Name_Section_En],
-                $my_sections->Grade_id = $request->Grade_id,
-                $my_sections->Class_id = $request->Class_id,
-                $my_sections->Status => $request->Status,
-            ]);
 
+            $Sections->save();
 
             $notification = array(
                 'message' => 'Data Updated successfully',

@@ -31,7 +31,7 @@ class Teacher extends Model
 // علاقة المعلمين مع الاقسام
     public function Sections()
     {
-        return $this->belongsToMany('App\Models\Section','teacher_section');
+        return $this->belongsToMany('App\Models\Section','teachers_sections');
     }
 
 

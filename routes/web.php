@@ -4,6 +4,7 @@ use App\Http\Controllers\Classroom\ClassroomController;
 use App\Http\Controllers\Grades\GradeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Section\SectionController;
+use App\Http\Controllers\Students\StudentsController;
 use App\Http\Controllers\Teachers\TeacherController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -67,6 +68,9 @@ Route::group(
 
     //==============================Teachers============================
     Route::resource('Teachers', TeacherController::class);
+
+    //==============================Teachers============================
+    Route::resource('Students', StudentsController::class);
 
 
 });
