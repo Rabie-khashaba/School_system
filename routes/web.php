@@ -71,6 +71,8 @@ Route::group(
 
     //==============================Teachers============================
     Route::resource('Students', StudentsController::class);
+    Route::get('/Get_classrooms/{id}',[StudentsController::class ,'Get_classrooms']);
+    Route::get('/Get_Sections/{id}',[StudentsController::class ,'Get_Sections']);
 
 
 });
