@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Students;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRequest;
 use App\Http\Requests\StoreStudentsRequest;
 use App\Repository\StudentRepositoryInterface;
 use Illuminate\Http\Request;
@@ -19,6 +20,7 @@ class StudentsController extends Controller
 
     public function index()
     {
+        return $this->Student->Get_Student();
 
     }
 
@@ -42,17 +44,17 @@ class StudentsController extends Controller
 
     public function edit(string $id)
     {
-        //
+        return $this->Student->Edit_Student($id);
     }
 
-    public function update(Request $request, string $id)
+    public function update(StoreStudentsRequest $request)
     {
-        //
+        return $this->Student->Update_Student($request);
     }
 
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        return $this->Student->delete_student($request);
     }
 
 

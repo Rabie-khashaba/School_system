@@ -13,4 +13,22 @@ class Student extends Model
     use HasTranslations;
     public $translatable = ['name'];
     protected $guarded =[];
+
+
+    public function grade(){
+        return $this->belongsTo('App\Models\Grade','Grade_id');
+    }
+    public function gender(){
+        return $this->belongsTo('App\Models\Gender' , 'gender_id');
+    }
+
+    public function classroom(){
+        return $this->belongsTo('App\Models\Classroom' , 'Classroom_id');
+    }
+ public function section(){
+        return $this->belongsTo('App\Models\Section' , 'section_id');
+    }
+
+
+
 }
