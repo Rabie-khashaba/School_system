@@ -329,8 +329,6 @@ class AddParent extends Component
 
     }
 
-
-
     //back
     public function back($step){
         $this->currentStep = $step;

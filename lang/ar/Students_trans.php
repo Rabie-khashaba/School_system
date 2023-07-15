@@ -24,6 +24,14 @@ return [
     'Close' => 'اغلاق',
     'Deleted_Student' => 'حذف بيانات الطالب',
     'Deleted_Student_tilte' => 'هل انت متأكد من حذف الطالب ؟',
+    'Attachments' => 'المرفقات',
+    'Student_details' => 'معلومات الطالب',
+    'Delete_attachment' => 'حذف مرفق',
+    'Delete_attachment_tilte' => 'هل انت متأكد من حذف المرفق ؟',
+    'filename' => 'اسم الملف',
+    'created_at' => 'تاريخ الاضافة',
+    'Download' => 'تحميل',
+    'delete' => 'حذف',
 
 
 

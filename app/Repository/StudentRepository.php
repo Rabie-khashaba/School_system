@@ -5,17 +5,20 @@ namespace App\Repository;
 use App\Models\Classroom;
 use App\Models\Gender;
 use App\Models\Grade;
+use App\Models\Image;
 use App\Models\MyParent;
 use App\Models\Nationalitie;
 use App\Models\Section;
 use App\Models\Student;
 use App\Models\Type_bloods;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class StudentRepository implements StudentRepositoryInterface{
 
 
     public function Get_Student(){
+
         $students = Student::all();
         return view('pages.Students.index' , compact('students'));
     }
@@ -32,6 +35,8 @@ class StudentRepository implements StudentRepositoryInterface{
 
     public function Store_Student($request){
 
+        DB::beginTransaction();
+
         try {
             $students = new Student();
             $students->name = ['en' => $request->name_en, 'ar' => $request->name_ar];
@@ -47,6 +52,24 @@ class StudentRepository implements StudentRepositoryInterface{
             $students->parent_id = $request->parent_id;
             $students->academic_year = $request->academic_year;
             $students->save();
+
+            // insert img
+            if($request->hasfile('photos'))
+            {
+                foreach($request->file('photos') as $file)
+                {
+                    $name = $file->getClientOriginalName();
+                    $file->storeAs('attachments/students/'.$students->name, $file->getClientOriginalName(),'upload_attachments');
+
+                    // insert in image_table
+                    $images= new Image();
+                    $images->filename=$name;
+                    $images->imageable_id= $students->id;
+                    $images->imageable_type = 'App\Models\Student';
+                    $images->save();
+                }
+            }
+            DB::commit(); // insert data
             $notification = array(
                 'message' => 'Data Has Been Saved successfully',
                 'alert-type'=> 'success',
@@ -55,6 +78,7 @@ class StudentRepository implements StudentRepositoryInterface{
         }
 
         catch (\Exception $e){
+            DB::rollBack();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
 
