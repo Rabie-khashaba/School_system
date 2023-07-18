@@ -13,6 +13,7 @@ use App\Models\Student;
 use App\Models\Type_bloods;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class StudentRepository implements StudentRepositoryInterface{
 
@@ -84,6 +85,54 @@ class StudentRepository implements StudentRepositoryInterface{
 
     }
 
+
+    public function show_Student($id){
+        $Student = Student::findOrFail($id);
+        return view('pages.Students.show',compact('Student'));
+    }
+
+    public function Upload_attachment($request){
+        // insert img
+        if($request->hasfile('photos'))
+        {
+            foreach($request->file('photos') as $file)
+            {
+                $name = $file->getClientOriginalName();
+                $file->storeAs('attachments/students/'.$request->student_name, $file->getClientOriginalName(),'upload_attachments');
+
+                // insert in image_table
+                $images= new Image();
+                $images->filename=$name;
+                $images->imageable_id= $request->student_id;
+                $images->imageable_type = 'App\Models\Student';
+                $images->save();
+            }
+        }
+        $notification = array(
+            'message' => 'Data Has Been Saved successfully',
+            'alert-type'=> 'success',
+        );
+        return redirect()->route('Students.show',$request->student_id)->with($notification);
+    }
+
+    public function Download_attachment($studentsname, $filename)
+    {
+        return response()->download(public_path('attachments/students/'.$studentsname.'/'.$filename));
+    }
+
+    public function Delete_attachment($request)
+    {
+        // Delete img in server disk
+        Storage::disk('upload_attachments')->delete('attachments/students/'.$request->student_name.'/'.$request->filename);
+
+        // Delete in data
+        image::where('id',$request->id)->where('filename',$request->filename)->delete();
+        $notification = array(
+            'message' => 'Deleted successfully',
+            'alert-type'=> 'error',
+        );
+        return redirect()->route('Students.show',$request->student_id)->with($notification);
+    }
 
     public function Get_classrooms($id){
 
