@@ -32,7 +32,8 @@ return [
     'created_at' => 'تاريخ الاضافة',
     'Download' => 'تحميل',
     'delete' => 'حذف',
-
-
+    'new_grades'  => 'المرحلة الدراسية الجديدة',
+    'old_grades'  => 'المرحلة الدراسية القديمه',
+    'Not Data In student Table' =>'لاتوجد بيانات في جدول الطلاب',
 
 ];

@@ -32,5 +32,8 @@ return [
     'created_at' => 'created_at',
     'Download' => 'Download',
     'delete' => 'Delete',
+    'new_grades'=>'New Grades',
+    'old_grades'=>'Old Grades',
+    'Not Data In student Table'=>'Not Data In student Table',
 
 ];

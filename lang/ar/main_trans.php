@@ -2,6 +2,7 @@
 
 return [
 
+
     'Dashboard'=>'الرئيسية',
     'Dashboard_page'=>'لوحة التحكم',
     'Main_title'=>'برنامج لادارة المدارس',
@@ -14,8 +15,15 @@ return [
     'sections'=>'الاقسام',
     'List_sections'=>'قائمة الاقسام الدراسية',
     'students'=>'الطلاب',
+    'Student_information'=>'معلومات الطلاب',
     'add_student'=>'اضافة طالب جديد',
     'list_students'=>'قائمة الطلاب',
+    'Students_Promotions'=>'ترقية الطلاب',
+    'add_Promotion'=>'اضافة ترقية جديدة',
+    'list_Promotions'=>'قائمة الترقيات',
+    'Graduate_students'=>'الطلاب المتخرجين',
+    'add_Graduate'=>'اضافة تخرج جديد',
+    'list_Graduate'=>'قائمة التخرجات',
     'Teachers'=>'المعلمين',
     'List_Teachers' => 'قائمة المعلمين',
     'Parents'=>'اولياء الامور',
@@ -29,8 +37,7 @@ return [
     'Settings'=>'الاعدادات',
     'Users'=>'المستخدمين',
     'Copyright' => 'جميع الحقوق محفوظة ',
-    'Name_Programer' => 'ربيع عبدالرحمن',
-    'Delete successfully'=>'تم الحذف بنجاح'
+    'Name_Programer' => 'ربيع عبدالرحمن'
 
 
 ];
