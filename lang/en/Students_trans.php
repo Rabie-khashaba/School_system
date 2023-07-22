@@ -36,4 +36,18 @@ return [
     'old_grades'=>'Old Grades',
     'Not Data In student Table'=>'Not Data In student Table',
 
+    'Old grade'=>'Old Grade',
+    'old_academic_year'=>'Old Academic Year',
+    'old classroom'=>'Old Classroom',
+    'old section'=>'Old Section',
+
+    'New grade'=>'New Grade',
+    'new_academic_year'=>'New Academic Year',
+    'new classroom'=>'New Classroom',
+    'new section'=>'New Section',
+
+    'back all'=>'Back All',
+    'back student'=>'Back Student',
+    'graduate student'=>'Graduate Student',
+
 ];

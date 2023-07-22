@@ -36,4 +36,17 @@ return [
     'old_grades'  => 'المرحلة الدراسية القديمه',
     'Not Data In student Table' =>'لاتوجد بيانات في جدول الطلاب',
 
+    'old Grade'=>'المرحلة الدراسية السابقة',
+    'old_academic_year'=>'السنه الدراسيه',
+    'old classroom' => 'الصف الدراسي السابق',
+    'old section'=> 'القسم الدراسي السابق',
+
+    'new Grade'=>'المرحلة الدراسية الحاليه',
+    'new_academic_year'=>'السنه الدراسيه الحاليه',
+    'new classroom' => 'الصف الدراسي الحاليه',
+    'new section'=> 'القسم الدراسي الحاليه',
+
+    'back all'=>'تراجع الكل',
+    'back student'=>'ارجاع الطالب',
+    'graduate student'=>'تخرج الطالب',
 ];

@@ -4,6 +4,7 @@ use App\Http\Controllers\Classroom\ClassroomController;
 use App\Http\Controllers\Grades\GradeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Section\SectionController;
+use App\Http\Controllers\Students\GraduatedController;
 use App\Http\Controllers\Students\PromotionsController;
 use App\Http\Controllers\Students\StudentsController;
 use App\Http\Controllers\Teachers\TeacherController;
@@ -82,6 +83,9 @@ Route::group(
 
     //==============================Promotion Students============================
     Route::resource('Promotion', PromotionsController::class);
+    //==============================Graduated Students============================
+    Route::resource('Graduated', GraduatedController::class);
+    Route::post('graduateStudent',[GraduatedController::class , 'GraduateStudent'])->name('Graduated.GraduateOneStudent');
 
 });
 

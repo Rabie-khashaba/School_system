@@ -36,8 +36,6 @@ class StudentsController extends Controller
     }
 
 
-
-
     public function show($id)
     {
         return $this->Student->show_Student($id);
@@ -82,6 +80,12 @@ class StudentsController extends Controller
     public function Get_Sections($id)
     {
         return $this->Student->Get_Sections($id);
+    }
+
+
+    //Graduated
+    public function Graduate($id){
+        return "Hello";
     }
 
 

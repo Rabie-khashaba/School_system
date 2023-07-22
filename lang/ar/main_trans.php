@@ -19,6 +19,7 @@ return [
     'add_student'=>'اضافة طالب جديد',
     'list_students'=>'قائمة الطلاب',
     'Students_Promotions'=>'ترقية الطلاب',
+    'Management_Students_Promotions'=>'اداره ترقيه الطلاب',
     'add_Promotion'=>'اضافة ترقية جديدة',
     'list_Promotions'=>'قائمة الترقيات',
     'Graduate_students'=>'الطلاب المتخرجين',

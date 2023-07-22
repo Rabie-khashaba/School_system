@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repository\StudentGraduationRepository;
+use App\Repository\StudentGraduationRepositoryInterface;
 use App\Repository\StudentPromotionRepository;
 use App\Repository\StudentPromotionRepositoryInterface;
 use App\Repository\StudentRepository;
@@ -20,7 +22,7 @@ class RepoServiceProvider extends ServiceProvider
         $this->app->bind(TeacherRepositoryInterface::class, TeacherRepository::class);
         $this->app->bind(StudentRepositoryInterface::class, StudentRepository::class);
         $this->app->bind(StudentPromotionRepositoryInterface::class, StudentPromotionRepository::class);
-
+        $this->app->bind(StudentGraduationRepositoryInterface::class, StudentGraduationRepository::class);
     }
 
     /**
