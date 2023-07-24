@@ -4,6 +4,7 @@ use App\Http\Controllers\Classroom\ClassroomController;
 use App\Http\Controllers\Grades\GradeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Section\SectionController;
+use App\Http\Controllers\Students\FeesController;
 use App\Http\Controllers\Students\GraduatedController;
 use App\Http\Controllers\Students\PromotionsController;
 use App\Http\Controllers\Students\StudentsController;
@@ -73,7 +74,6 @@ Route::group(
 
     //==============================Students============================
     Route::resource('Students', StudentsController::class);
-    Route::resource('Promotion', PromotionsController::class);
     Route::get('/Get_classrooms/{id}',[StudentsController::class ,'Get_classrooms']);
     Route::get('/Get_Sections/{id}',[StudentsController::class ,'Get_Sections']);
     Route::post('Upload_attachment',[StudentsController::class ,'Upload_attachment'])->name('Upload_attachment');
@@ -86,6 +86,13 @@ Route::group(
     //==============================Graduated Students============================
     Route::resource('Graduated', GraduatedController::class);
     Route::post('graduateStudent',[GraduatedController::class , 'GraduateStudent'])->name('Graduated.GraduateOneStudent');
+
+    //==============================Fees============================
+    Route::resource('Fees', FeesController::class);
+
+
+
+
 
 });
 

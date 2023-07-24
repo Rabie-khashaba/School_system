@@ -32,6 +32,7 @@ return [
     'Onlineclasses'=>'Online classes',
     'Settings'=>'Settings',
     'Users'=>'Users',
+    'study fees'=>'Study Fees',
     'Copyright' => 'Copyright',
     'Name_Programer' => 'Rabi3 AbdElrahman All Rights Reserved'
 

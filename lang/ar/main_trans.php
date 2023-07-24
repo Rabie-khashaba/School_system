@@ -37,6 +37,7 @@ return [
     'Onlineclasses'=>'حصص اونلاين',
     'Settings'=>'الاعدادات',
     'Users'=>'المستخدمين',
+    'study fees'=>'الرسوم الدراسية',
     'Copyright' => 'جميع الحقوق محفوظة ',
     'Name_Programer' => 'ربيع عبدالرحمن'
 
