@@ -9,6 +9,8 @@ class Fee_invoice extends Model
 {
     use HasFactory;
 
+    protected $guarded =[];
+
     public function grade()
     {
         return $this->belongsTo('App\Models\Grade', 'Grade_id');

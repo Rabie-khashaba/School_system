@@ -11,7 +11,7 @@ class Fee extends Model
     use HasFactory;
     use HasTranslations;
     public $translatable = ['title'];
-    protected $fillable=['title','amount','Grade_id','Classroom_id','year','description'];
+    protected $fillable=['title','amount','Grade_id','Classroom_id','year','fee_type','description'];
 
 
     // علاقة بين الرسوم الدراسية والمراحل الدراسية لجب اسم المرحلة

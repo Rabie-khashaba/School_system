@@ -41,6 +41,7 @@ class FeesRepository implements FeesRepositoryInterface
             $fees->Classroom_id  =$request->Classroom_id;
             $fees->description  =$request->description;
             $fees->year  =$request->year;
+            $fees->fee_type  =$request->Fee_type;
             $fees->save();
 
             $notification = array(
@@ -67,6 +68,7 @@ class FeesRepository implements FeesRepositoryInterface
             $fees->Classroom_id  =$request->Classroom_id;
             $fees->description  =$request->description;
             $fees->year  =$request->year;
+            $fees->fee_type  =$request->Fee_type;
             $fees->save();
 
             $notification = array(
