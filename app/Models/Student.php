@@ -49,6 +49,11 @@ class Student extends Model
         return $this->morphMany('App\Models\Image', 'imageable');
     }
 
+    public function student_account()
+    {
+        return $this->hasMany('App\Models\StudentAccounts', 'student_id');
+
+    }
 
 
 
