@@ -55,7 +55,10 @@ class Student extends Model
 
     }
 
-
+    public function attendance()
+    {
+        return $this->hasMany('App\Models\Attendance', 'student_id');
+    }
 
 
 }

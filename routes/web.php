@@ -1,16 +1,22 @@
 <?php
 
 use App\Http\Controllers\Classroom\ClassroomController;
+use App\Http\Controllers\Exams\ExamsController;
 use App\Http\Controllers\Grades\GradeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Questions\QuestionsController;
+use App\Http\Controllers\Quizzes\QuizzController;
 use App\Http\Controllers\Section\SectionController;
+use App\Http\Controllers\Students\AttendanceController;
 use App\Http\Controllers\Students\FeeInvoiceController;
 use App\Http\Controllers\Students\FeesController;
 use App\Http\Controllers\Students\GraduatedController;
+use App\Http\Controllers\Students\PaymentStudentController;
 use App\Http\Controllers\Students\ProcessingFeeController;
 use App\Http\Controllers\Students\PromotionsController;
 use App\Http\Controllers\Students\ReceiptStudentController;
 use App\Http\Controllers\Students\StudentsController;
+use App\Http\Controllers\Subjects\SubjectController;
 use App\Http\Controllers\Teachers\TeacherController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -68,6 +74,8 @@ Route::group(
     Route::get('classes/{id}',[SectionController::class ,'getClasses']);
 
 
+    //online classes
+    Route::resource('online_classes', OnlineClassController::class);
 
     // Parents
     Route::view('Add_parent','livewire.show_form');  // route to view directly
@@ -90,6 +98,7 @@ Route::group(
     Route::resource('Graduated', GraduatedController::class);
     Route::post('graduateStudent',[GraduatedController::class , 'GraduateStudent'])->name('Graduated.GraduateOneStudent');
 
+
     //==============================Fees============================
     Route::resource('Fees', FeesController::class);
     //==============================Fees Invoices============================
@@ -98,6 +107,18 @@ Route::group(
     Route::resource('receipt_students', ReceiptStudentController::class);
     //==============================Processing Fee============================
     Route::resource('ProcessingFee', ProcessingFeeController::class);
+    //==============================Payment_students============================
+    Route::resource('Payment_students', PaymentStudentController::class);
+    //==============================Attendance============================
+    Route::resource('Attendance', AttendanceController::class);
+    //==============================Attendance============================
+    Route::resource('subjects', SubjectController::class);
+    //==============================Exams============================
+    Route::resource('Exams', ExamsController::class);
+    //==============================Quizzes============================
+    Route::resource('Quizzes', QuizzController::class);
+    Route::resource('questions', QuestionsController::class);
+
 
 
 });

@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fund_accounts', function (Blueprint $table) {
+        Schema::create('online_classes', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->foreignId('receipt_id')->references('id')->on('receipt_students')->onDelete('cascade');
-            $table->decimal('Debit',8,2)->nullable();
-            $table->decimal('credit',8,2)->nullable();
-            $table->string('description');
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fund_accounts');
+        Schema::dropIfExists('online_classes');
     }
 };
