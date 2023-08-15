@@ -11,6 +11,7 @@ use App\Http\Controllers\Students\AttendanceController;
 use App\Http\Controllers\Students\FeeInvoiceController;
 use App\Http\Controllers\Students\FeesController;
 use App\Http\Controllers\Students\GraduatedController;
+use App\Http\Controllers\Students\OnlineClassController;
 use App\Http\Controllers\Students\PaymentStudentController;
 use App\Http\Controllers\Students\ProcessingFeeController;
 use App\Http\Controllers\Students\PromotionsController;
@@ -74,8 +75,11 @@ Route::group(
     Route::get('classes/{id}',[SectionController::class ,'getClasses']);
 
 
-    //online classes
+    //online classe
     Route::resource('online_classes', OnlineClassController::class);
+    Route::get('indirectCreate', [OnlineClassController::class , 'indirectCreate'])->name('indirect.create');
+    Route::post('storeIndirect', [OnlineClassController::class , 'storeIndirect'])->name('indirect.store');
+
 
     // Parents
     Route::view('Add_parent','livewire.show_form');  // route to view directly

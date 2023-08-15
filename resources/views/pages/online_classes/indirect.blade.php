@@ -29,7 +29,7 @@
                     </div>
                 @endif
 
-                <form method="post" action="{{ route('indirect.store.admin') }}" autocomplete="off">
+                <form method="post" action="{{ route('indirect.store') }}" autocomplete="off">
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
@@ -39,7 +39,7 @@
                                 <select class="custom-select mr-sm-2" name="Grade_id">
                                     <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
                                     @foreach ($Grades as $Grade)
-                                        <option value="{{ $Grade->id }}">{{ $Grade->Name }}</option>
+                                        <option value="{{ $Grade->id }}">{{ $Grade->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

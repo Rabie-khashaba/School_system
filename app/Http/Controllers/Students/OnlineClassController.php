@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Students;
 
 use App\Http\Controllers\Controller;
+use App\Http\Traits\MeetingZoomTrait;
 use App\Models\Grade;
 use App\Models\online_classe;
 use Illuminate\Http\Request;
@@ -24,11 +25,7 @@ class OnlineClassController extends Controller
         return view('pages.online_classes.add', compact('Grades'));
     }
 
-    public function indirectCreate()
-    {
-        $Grades = Grade::all();
-        return view('pages.online_classes.indirect', compact('Grades'));
-    }
+
 
 
     public function store(Request $request)
@@ -51,8 +48,13 @@ class OnlineClassController extends Controller
                 'start_url' => $meeting->start_url,
                 'join_url' => $meeting->join_url,
             ]);
-            toastr()->success(trans('messages.success'));
-            return redirect()->route('online_classes.index');
+
+
+            $notification = array(
+                'message' => 'Meeting Created successfully',
+                'alert-type'=> 'success',
+            );
+            return redirect()->route('online_classes.index')->with($notification);
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -60,8 +62,16 @@ class OnlineClassController extends Controller
     }
 
 
+    public function indirectCreate()
+    {
+        $Grades = Grade::all();
+        return view('pages.online_classes.indirect', compact('Grades'));
+    }
+
     public function storeIndirect(Request $request)
     {
+
+        //return $request;
         try {
             online_classe::create([
                 'integration' => false,
@@ -69,6 +79,7 @@ class OnlineClassController extends Controller
                 'Classroom_id' => $request->Classroom_id,
                 'section_id' => $request->section_id,
                 'created_by' => auth()->user()->email,
+                'user_id' => 1,
                 'meeting_id' => $request->meeting_id,
                 'topic' => $request->topic,
                 'start_at' => $request->start_time,
@@ -77,8 +88,11 @@ class OnlineClassController extends Controller
                 'start_url' => $request->start_url,
                 'join_url' => $request->join_url,
             ]);
-            toastr()->success(trans('messages.success'));
-            return redirect()->route('online_classes.index');
+            $notification = array(
+                'message' => 'Meeting Created successfully',
+                'alert-type'=> 'success',
+            );
+            return redirect()->route('online_classes.index')->with($notification);
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
@@ -122,8 +136,12 @@ class OnlineClassController extends Controller
                 online_classe::destroy($request->id);
             }
 
-            toastr()->success(trans('messages.Delete'));
-            return redirect()->route('online_classes.index');
+            //
+            $notification = array(
+                'message' => 'Meeting Deleted successfully',
+                'alert-type'=> 'error',
+            );
+            return redirect()->route('online_classes.index')->with($notification);
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }

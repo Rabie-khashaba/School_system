@@ -22,7 +22,7 @@
                         <div class="card card-statistics h-100">
                             <div class="card-body">
                                 <a href="{{route('online_classes.create')}}" class="btn btn-success" role="button" aria-pressed="true">اضافة حصة اونلاين جديدة</a>
-                                <a class="btn btn-warning" href="{{route('indirect.create.admin')}}">اضافة حصة اوفلاين جديدة</a>
+                                <a class="btn btn-warning" href="{{route('indirect.create')}}">اضافة حصة اوفلاين جديدة</a>
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                            data-page-length="50"
@@ -45,8 +45,8 @@
                                         @foreach($online_classes as $online_classe)
                                             <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{$online_classe->grade->Name}}</td>
-                                            <td>{{ $online_classe->classroom->Name_Class }}</td>
+                                            <td>{{$online_classe->grade->name}}</td>
+                                            <td>{{ $online_classe->classroom->Name }}</td>
                                             <td>{{$online_classe->section->Name_Section}}</td>
                                                 <td>{{$online_classe->created_by}}</td>
                                                 <td>{{$online_classe->topic}}</td>
