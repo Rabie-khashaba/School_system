@@ -34,10 +34,13 @@ class LibraryRepository implements LibraryRepositoryInterface
             $books->section_id = $request->section_id;
             $books->teacher_id = 1;
             $books->save();
-            $this->uploadFile($request,'file_name');
+            $this->uploadFile($request,'file_name','Books');
 
-            toastr()->success(trans('messages.success'));
-            return redirect()->route('library.create');
+            $notification = array(
+                'message' => 'Books Saved successfully',
+                'alert-type'=> 'success',
+            );
+            return redirect()->route('library.index')->with($notification);
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
@@ -61,7 +64,7 @@ class LibraryRepository implements LibraryRepositoryInterface
 
                 $this->deleteFile($book->file_name);
 
-                $this->uploadFile($request,'file_name');
+                $this->uploadFile($request,'file_name','Books');
 
                 $file_name_new = $request->file('file_name')->getClientOriginalName();
                 $book->file_name = $book->file_name !== $file_name_new ? $file_name_new : $book->file_name;
@@ -72,8 +75,11 @@ class LibraryRepository implements LibraryRepositoryInterface
             $book->section_id = $request->section_id;
             $book->teacher_id = 1;
             $book->save();
-            toastr()->success(trans('messages.Update'));
-            return redirect()->route('library.index');
+            $notification = array(
+                'message' => 'Books Updated successfully',
+                'alert-type'=> 'success',
+            );
+            return redirect()->route('library.index')->with($notification);
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
@@ -83,12 +89,15 @@ class LibraryRepository implements LibraryRepositoryInterface
     {
         $this->deleteFile($request->file_name);
         library::destroy($request->id);
-        toastr()->error(trans('messages.Delete'));
-        return redirect()->route('library.index');
+        $notification = array(
+            'message' => 'Books Deleted successfully',
+            'alert-type'=> 'error',
+        );
+        return redirect()->route('library.index')->with($notification);
     }
 
     public function download($filename)
     {
-        return response()->download(public_path('attachments/library/'.$filename));
+        return response()->download(public_path('attachments/Books/'.$filename));
     }
 }

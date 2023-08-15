@@ -11,6 +11,7 @@ use App\Http\Controllers\Students\AttendanceController;
 use App\Http\Controllers\Students\FeeInvoiceController;
 use App\Http\Controllers\Students\FeesController;
 use App\Http\Controllers\Students\GraduatedController;
+use App\Http\Controllers\Students\LibraryController;
 use App\Http\Controllers\Students\OnlineClassController;
 use App\Http\Controllers\Students\PaymentStudentController;
 use App\Http\Controllers\Students\ProcessingFeeController;
@@ -121,8 +122,11 @@ Route::group(
     Route::resource('Exams', ExamsController::class);
     //==============================Quizzes============================
     Route::resource('Quizzes', QuizzController::class);
+    //==============================questions============================
     Route::resource('questions', QuestionsController::class);
-
+    //==============================library============================
+    Route::resource('library', LibraryController::class);
+    Route::get('download_file/{filename}', [LibraryController::class,'downloadAttachment'])->name('downloadAttachment');
 
 
 });

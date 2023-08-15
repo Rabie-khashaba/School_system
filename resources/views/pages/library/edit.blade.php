@@ -51,7 +51,7 @@
                                             <select class="custom-select mr-sm-2" name="Grade_id">
                                                 <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
                                                 @foreach($grades as $grade)
-                                                    <option  value="{{ $grade->id }}" {{$book->Grade_id == $grade->id ?'selected':''}}>{{ $grade->Name }}</option>
+                                                    <option  value="{{ $grade->id }}" {{$book->Grade_id == $grade->id ?'selected':''}}>{{ $grade->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -61,7 +61,7 @@
                                         <div class="form-group">
                                             <label for="Classroom_id">{{trans('Students_trans.classrooms')}} : <span class="text-danger">*</span></label>
                                             <select class="custom-select mr-sm-2" name="Classroom_id">
-                                              <option value="{{$book->Classroom_id}}">{{$book->classroom->Name_Class}}</option>
+                                              <option value="{{$book->Classroom_id}}">{{$book->classroom->Name}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -79,7 +79,7 @@
                                 <div class="form-row">
                                     <div class="col">
 
-                                        <embed src="{{ URL::asset('attachments/library/'.$book->file_name) }}" type="application/pdf"   height="150px" width="100px"><br><br>
+                                        <embed src="{{ URL::asset('attachments/Books/'.$book->file_name) }}" type="application/pdf"   height="150px" width="100px"><br><br>
 
                                         <div class="form-group">
                                             <label for="academic_year">المرفقات : <span class="text-danger">*</span></label>

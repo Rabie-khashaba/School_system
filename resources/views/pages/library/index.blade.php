@@ -44,8 +44,8 @@
                                                 <td>{{ $loop->iteration}}</td>
                                                 <td>{{$book->title}}</td>
                                                 <td>{{$book->teacher->Name}}</td>
-                                                <td>{{$book->grade->Name}}</td>
-                                                <td>{{$book->classroom->Name_Class}}</td>
+                                                <td>{{$book->grade->name}}</td>
+                                                <td>{{$book->classroom->Name}}</td>
                                                 <td>{{$book->section->Name_Section}}</td>
                                                 <td>
                                                     <a href="{{route('downloadAttachment',$book->file_name)}}" title="تحميل الكتاب" class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fas fa-download"></i></a>
