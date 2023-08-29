@@ -10,6 +10,7 @@ use App\Models\Section;
 use App\Models\Teacher;
 use App\Models\Teacher_Section;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SectionController extends Controller
 {
@@ -24,8 +25,9 @@ class SectionController extends Controller
 
 
     public function storeSections(Request $request){
-        //return $request;
+       // return $request;
 
+        DB::beginTransaction();
         try {
             $my_sections = new Section();
             $my_sections->Name_Section = ['ar'=>$request->Name_Section_Ar,'en'=>$request->Name_Section_En];
@@ -35,14 +37,26 @@ class SectionController extends Controller
             $my_sections->save();
 
             //Add id in pivot table
-            $my_sections->teachers()->attach($request->teacher_id); // get id of teacher
+            //$my_sections->teachers()->attach($request->teacher_id); // get id of teacher
 
+            $section_teacher = new Teacher_Section();
+
+            foreach ($request->teacher_id as $ids){
+                $section_teacher->section_id = $my_sections->id;
+                $section_teacher->teacher_id = $ids;
+            }
+
+            $section_teacher->save();
+
+            DB::commit();
             $notification = array(
                 'message' => 'Data Has Been Saved successfully',
                 'alert-type'=> 'success',
             );
             return redirect()->route('sections.index')->with($notification);
+
         }catch (\Exception $exception){
+            DB::rollback();
             return redirect()->back()->withErrors(['error'=>$exception->getMessage()]);
         }
 

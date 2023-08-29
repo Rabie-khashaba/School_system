@@ -57,8 +57,21 @@ login-->
                 </div>
                 <div class="col-lg-4 col-md-6 bg-white">
                     <div class="login-fancy pb-40 clearfix">
-                        <h3 class="mb-30">تسجيل الدخول</h3>
+                        @if($type == 'student')
+                            <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">تسجيل دخول طالب</h3>
+                        @elseif($type == 'parent')
+                            <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">تسجيل دخول ولي امر</h3>
+                        @elseif($type == 'teacher')
+                            <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">تسجيل دخول معلم</h3>
+                        @else
+                            <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">تسجيل دخول ادمن</h3>
+                        @endif
 
+                            @if (\Session::has('message'))
+                                <div class="alert alert-danger">
+                                    <li>{!! \Session::get('message') !!}</li>
+                                </div>
+                            @endif
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
@@ -67,6 +80,7 @@ login-->
                                 <input id="email" type="email"
                                        class="form-control @error('email') is-invalid @enderror" name="email"
                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input type="hidden" value="{{$type}}" name="type">
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

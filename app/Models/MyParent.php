@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Translatable\HasTranslations;
 
-class MyParent extends Model
+class MyParent extends Authenticatable
 {
     use HasFactory;
     use HasTranslations;

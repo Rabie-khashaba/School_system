@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Classroom\ClassroomController;
 use App\Http\Controllers\Exams\ExamsController;
 use App\Http\Controllers\Grades\GradeController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Questions\QuestionsController;
 use App\Http\Controllers\Quizzes\QuizzController;
 use App\Http\Controllers\Section\SectionController;
+use App\Http\Controllers\settingController;
 use App\Http\Controllers\Students\AttendanceController;
 use App\Http\Controllers\Students\FeeInvoiceController;
 use App\Http\Controllers\Students\FeesController;
@@ -36,14 +38,13 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-Auth::routes();
+//Auth::routes();
+Route::get('/' , [HomeController::class , 'index'])->name('selection'); //
 
-Route::group(['middleware'=>'guest'] , function (){  // only not authenticated can enter this route
-    Route::get('/', function()
-    {
-        return view('auth.login');
-    });
-});
+Route::get('login/{type}', [LoginController::class , 'loginForm'])->middleware('guest')->name('login.show');
+Route::post('login', [LoginController::class , 'login'])->name('login');
+Route::get('logout/{type}', [LoginController::class , 'logout'])->name('logout');
+
 
 
 Route::group(
@@ -52,7 +53,7 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth' ]
     ], function(){
 
-    Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
     //grade
     Route::get('grades' , [GradeController::class , 'index'])->name('grades.index');
@@ -69,7 +70,7 @@ Route::group(
     Route::post('Filter_Classes',[ClassroomController::class ,'Filter_Classes'])->name('Filter_Classes');
 
     //Sections
-    Route::get('sections',[SectionController::class ,'index'])->name('sections.index');
+    Route::get('Sections', [SectionController::class ,'index'])->name('Sections.index');
     Route::post('storeSections',[SectionController::class ,'storeSections'])->name('Sections.store');
     Route::post('updateSection',[SectionController::class ,'updateSection'])->name('Sections.update');
     Route::post('destroySection',[SectionController::class ,'destroySection'])->name('Sections.destroy');
@@ -83,7 +84,7 @@ Route::group(
 
 
     // Parents
-    Route::view('Add_parent','livewire.show_form');  // route to view directly
+    Route::view('Add_parent','livewire.show_form')->name('add_parent');  // route to view directly
 
     //==============================Teachers============================
     Route::resource('Teachers', TeacherController::class);
@@ -127,6 +128,9 @@ Route::group(
     //==============================library============================
     Route::resource('library', LibraryController::class);
     Route::get('download_file/{filename}', [LibraryController::class,'downloadAttachment'])->name('downloadAttachment');
+
+    //==============================library============================
+    Route::resource('settings', settingController::class);
 
 
 });

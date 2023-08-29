@@ -10,6 +10,9 @@ class Teacher_Section extends Model
     use HasFactory;
 
     protected $table = 'teachers_sections';
-    protected $fillable =['Teacher_id', 'Section_id'];
+    protected $fillable =['teacher_id', 'section_id'];
+
+
+
 
 }

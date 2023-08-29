@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('teachers_sections', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('Teacher_id')->unsigned();
-            $table->foreign('Teacher_id')->references('id')->on('teachers')->onDelete('cascade');
-            $table->bigInteger('Section_id')->unsigned();
-            $table->foreign('Section_id')->references('id')->on('sections')->onDelete('cascade');
+            $table->unsignedBigInteger('teacher_id');
+            $table->unsignedBigInteger('section_id');
+
+            // foreign keys
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
+            $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
+
+            $table->timestamps();
 
         });
     }
