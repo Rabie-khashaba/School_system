@@ -53,7 +53,7 @@ class SectionController extends Controller
                 'message' => 'Data Has Been Saved successfully',
                 'alert-type'=> 'success',
             );
-            return redirect()->route('sections.index')->with($notification);
+            return redirect()->route('Sections.index')->with($notification);
 
         }catch (\Exception $exception){
             DB::rollback();
@@ -95,7 +95,7 @@ class SectionController extends Controller
                 'message' => 'Data Updated successfully',
                 'alert-type'=> 'success',
             );
-            return redirect()->route('sections.index')->with($notification);
+            return redirect()->route('Sections.index')->with($notification);
 
         }catch (\Exception $exception){
                 return redirect()->back()->withErrors(['error'=>$exception->getMessage()]);
@@ -119,7 +119,7 @@ class SectionController extends Controller
                 'message' => 'Data Deleted successfully',
                 'alert-type'=> 'error',
             );
-            return redirect()->route('sections.index')->with($notification);
+            return redirect()->route('Sections.index')->with($notification);
 
 
         }catch (\Exception $exception){

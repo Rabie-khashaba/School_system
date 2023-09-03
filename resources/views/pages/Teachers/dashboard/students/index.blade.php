@@ -1,16 +1,16 @@
 @extends('layouts.master')
 @section('css')
     @toastr_css
-@section('title')
-    قائمة الحضور والغياب للطلاب
-@stop
+    @section('title')
+        قائمة الحضور والغياب للطلاب
+    @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
-@section('PageTitle')
-    قائمة الحضور والغياب للطلاب
-@stop
-<!-- breadcrumb -->
+    @section('PageTitle')
+        قائمة الحضور والغياب للطلاب
+    @stop
+    <!-- breadcrumb -->
 @endsection
 @section('content')
     <!-- row -->
@@ -58,14 +58,14 @@
                     <td>{{ $student->name }}</td>
                     <td>{{ $student->email }}</td>
                     <td>{{ $student->gender->Name }}</td>
-                    <td>{{ $student->grade->Name }}</td>
-                    <td>{{ $student->classroom->Name_Class }}</td>
+                    <td>{{ $student->grade->name }}</td>
+                    <td>{{ $student->classroom->Name }}</td>
                     <td>{{ $student->section->Name_Section }}</td>
                     <td>
                         <label class="block text-gray-500 font-semibold sm:border-r sm:pr-4">
                             <input name="attendences[{{ $student->id }}]"
                                    @foreach($student->attendance()->where('attendence_date',date('Y-m-d'))->get() as $attendance)
-                                   {{ $attendance->attendence_status == 1 ? 'checked' : '' }}
+                                       {{ $attendance->attendence_status == 1 ? 'checked' : '' }}
                                    @endforeach
                                    class="leading-tight" type="radio"
                                    value="presence">
@@ -75,7 +75,7 @@
                         <label class="ml-4 block text-gray-500 font-semibold">
                             <input name="attendences[{{ $student->id }}]"
                                    @foreach($student->attendance()->where('attendence_date',date('Y-m-d'))->get() as $attendance)
-                                   {{ $attendance->attendence_status == 0 ? 'checked' : '' }}
+                                       {{ $attendance->attendence_status == 0 ? 'checked' : '' }}
                                    @endforeach
                                    class="leading-tight" type="radio"
                                    value="absent">

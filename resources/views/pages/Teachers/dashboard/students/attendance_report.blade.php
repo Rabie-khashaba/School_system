@@ -56,7 +56,7 @@
                     </div>
                     <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">{{trans('Students_trans.submit')}}</button>
                 </form>
-                @isset($Students)
+                @isset($Attendance)
                 <div class="table-responsive">
                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50"
                            style="text-align: center">
@@ -71,11 +71,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($Students as $student)
+                        @foreach($Attendance as $student)
                             <tr>
                                 <td>{{ $loop->index+1 }}</td>
                                 <td>{{$student->students->name}}</td>
-                                <td>{{$student->grade->Name}}</td>
+                                <td>{{$student->grade->name}}</td>
                                 <td>{{$student->section->Name_Section}}</td>
                                 <td>{{$student->attendence_date}}</td>
                                 <td>
