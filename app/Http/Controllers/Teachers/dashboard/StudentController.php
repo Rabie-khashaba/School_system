@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Teachers\dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use App\Models\Classroom;
 use App\Models\Section;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -139,5 +140,21 @@ class StudentController extends Controller
         }
 
 
+    }
+
+
+
+    public function Get_classrooms($id){
+
+        $list_classes = Classroom::where("Grade_id", $id)->pluck("Name", "id");
+        return $list_classes;
+
+    }
+
+    //Get Sections
+    public function Get_Sections($id){
+
+        $list_sections = Section::where("Class_id", $id)->pluck("Name_Section", "id");
+        return $list_sections;
     }
 }

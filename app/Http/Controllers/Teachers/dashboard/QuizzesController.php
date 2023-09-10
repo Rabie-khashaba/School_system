@@ -10,6 +10,7 @@ use App\Models\Question;
 use App\Models\Quizze;
 use App\Models\Section;
 use App\Models\Subject;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class QuizzesController extends Controller
@@ -25,7 +26,7 @@ class QuizzesController extends Controller
 
     public function create()
     {
-        $data['grades'] = Grade::all();
+        $data['grades'] = Teacher::find(1)->Grades()->get();  // get Grades belongs to this teachers
         $data['subjects'] = Subject::where('teacher_id',auth()->user()->id)->get();
         return view('pages.Teachers.dashboard.Quizzes.create', $data);
     }
@@ -42,8 +43,11 @@ class QuizzesController extends Controller
             $quizzes->section_id = $request->section_id;
             $quizzes->teacher_id = auth()->user()->id;
             $quizzes->save();
-            toastr()->success(trans('messages.success'));
-            return redirect()->route('quizzes.create');
+            $notification = array(
+                'message' => 'Data Has Been saved successfully',
+                'alert-type'=> 'success',
+            );
+            return redirect()->route('quizzes.create')->with($notification);
         }
         catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
@@ -56,17 +60,9 @@ class QuizzesController extends Controller
     {
         $quizz = Quizze::findorFail($id);
         $data['grades'] = Grade::all();
-        $data['subjects'] = Subject::where('teacher_id',auth()->user()->id)->get();
+        $data['subjects'] = Subject::where('teacher_id',auth()->user()->id)->get();  //Subjects belongs to this teacher
         return view('pages.Teachers.dashboard.Quizzes.edit', $data, compact('quizz'));
     }
-
-    public function show($id)
-    {
-        $questions = Question::where('quizze_id',$id)->get();
-        $quizz = Quizze::findorFail($id);
-        return view('pages.Teachers.dashboard.Questions.index',compact('questions','quizz'));
-    }
-
 
     public function update(Request $request)
     {
@@ -79,20 +75,36 @@ class QuizzesController extends Controller
             $quizz->section_id = $request->section_id;
             $quizz->teacher_id = auth()->user()->id;
             $quizz->save();
-            toastr()->success(trans('messages.Update'));
-            return redirect()->route('quizzes.index');
+            $notification = array(
+                'message' => 'Data Has Been saved successfully',
+                'alert-type'=> 'success',
+            );
+            return redirect()->route('quizzes.index')->with($notification);
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
     }
 
 
+    // Questions
+    public function show($id)
+    {
+        $questions = Question::where('quizze_id',$id)->get();
+        $quizz = Quizze::findorFail($id);
+        return view('pages.Teachers.dashboard.Questions.index',compact('questions','quizz'));
+    }
+
+
+
     public function destroy($id)
     {
         try {
             Quizze::destroy($id);
-            toastr()->error(trans('messages.Delete'));
-            return redirect()->back();
+            $notification = array(
+                'message' => 'Data Deleted successfully',
+                'alert-type'=> 'error',
+            );
+            return redirect()->route('quizzes.index')->with($notification);
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -107,8 +119,13 @@ class QuizzesController extends Controller
     public function repeat_quizze(Request $request)
     {
         Degree::where('student_id', $request->student_id)->where('quizze_id', $request->quizze_id)->delete();
-        toastr()->success('تم فتح الاختبار مرة اخرى للطالب');
-        return redirect()->back();
+//        toastr()->success('تم فتح الاختبار مرة اخرى للطالب');
+//        return redirect()->back();
+        $notification = array(
+            'message' => 'تم فتح الاختبار مرة اخرى للطالب',
+            'alert-type'=> 'success',
+        );
+        return redirect()->route('quizzes.index')->with($notification);
     }
 
 }

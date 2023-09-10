@@ -20,6 +20,8 @@ return new class extends Migration
             $table->foreign('Specialization_id')->references('id')->on('specializations')->onDelete('cascade');
             $table->bigInteger('Gender_id')->unsigned();
             $table->foreign('Gender_id')->references('id')->on('genders')->onDelete('cascade');
+            $table->bigInteger('Grade_id')->unsigned();
+            $table->foreign('Grade_id')->references('id')->on('Grades')->onDelete('cascade');
             $table->date('Joining_Date');
             $table->text('Address');
             $table->timestamps();

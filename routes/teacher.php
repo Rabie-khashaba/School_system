@@ -3,6 +3,7 @@
 use App\Http\Controllers\Exams\ExamsController;
 use App\Http\Controllers\Questions\QuestionsController;
 use App\Http\Controllers\Quizzes\QuizzController;
+use App\Http\Controllers\Students\StudentsController;
 use App\Http\Controllers\Teachers\dashboard\OnlineZoomClassesController;
 use App\Http\Controllers\Teachers\dashboard\ProfileController;
 use App\Http\Controllers\Teachers\dashboard\QuizzesController;
@@ -54,7 +55,7 @@ Route::group(
         Route::get('attendance_report',[StudentController::class , 'attendanceReport'])->name('attendance.report');
         Route::post('attendance_report',[StudentController::class , 'attendanceSearch'])->name('attendance.search');
         Route::resource('quizzes', QuizzesController::class);
-        Route::resource('questions', QuestionsController::class);
+        Route::resource('question', QuestionsController::class);
         Route::resource('online_zoom_classes', OnlineZoomClassesController::class);
         Route::get('/indirect', [OnlineZoomClassesController::class,'indirectCreate'])->name('indirect.teacher.create');
         Route::post('/indirect', [OnlineZoomClassesController::class,'storeIndirect'])->name('indirect.teacher.store');
@@ -64,6 +65,9 @@ Route::group(
         Route::post('repeat_quizze', [QuizzesController::class,'repeat_quizze'])->name('repeat.quizze');
 
 
+        //get Grades ,classes , sections
+        Route::get('/Get_classrooms/{id}',[StudentController::class ,'Get_classrooms']);
+        Route::get('/Get_Sections/{id}',[StudentController::class ,'Get_Sections']);
 
 
 });

@@ -30,8 +30,12 @@ class QuestionRepository implements QuestionRepositoryInterface
             $question->score = $request->score;
             $question->quizze_id = $request->quizze_id;
             $question->save();
-            toastr()->success(trans('messages.success'));
-            return redirect()->route('questions.create');
+            $notification = array(
+                'message' => 'Data Has Been saved successfully',
+                'alert-type'=> 'success',
+            );
+            return redirect()->route('questions.create')->with($notification);
+
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
@@ -54,8 +58,11 @@ class QuestionRepository implements QuestionRepositoryInterface
             $question->score = $request->score;
             $question->quizze_id = $request->quizze_id;
             $question->save();
-            toastr()->success(trans('messages.Update'));
-            return redirect()->route('questions.index');
+            $notification = array(
+                'message' => 'Data Has Been Updated successfully',
+                'alert-type'=> 'success',
+            );
+            return redirect()->route('questions.create')->with($notification);
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
@@ -65,8 +72,11 @@ class QuestionRepository implements QuestionRepositoryInterface
     {
         try {
             Question::destroy($request->id);
-            toastr()->error(trans('messages.Delete'));
-            return redirect()->back();
+            $notification = array(
+                'message' => 'Data Deleted successfully',
+                'alert-type'=> 'error',
+            );
+            return redirect()->route('questions.index')->with($notification);
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }

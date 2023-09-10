@@ -44,13 +44,13 @@
                                                 <td>{{ $loop->iteration}}</td>
                                                 <td>{{$quizze->name}}</td>
                                                 <td>{{$quizze->teacher->Name}}</td>
-                                                <td>{{$quizze->grade->Name}}</td>
-                                                <td>{{$quizze->classroom->Name_Class}}</td>
+                                                <td>{{$quizze->grade->name}}</td>
+                                                <td>{{$quizze->classroom->Name}}</td>
                                                 <td>{{$quizze->section->Name_Section}}</td>
                                                 <td>
                                                     <a href="{{route('quizzes.edit',$quizze->id)}}"
                                                        class="btn btn-info btn-sm" role="button" aria-pressed="true"><i
-                                                            class="fa fa-edit"></i></a>
+                                                            class="fa fa-edit"></i> تعديل</a>
                                                     <button type="button" class="btn btn-danger btn-sm"
                                                             data-toggle="modal"
                                                             data-target="#delete_exam{{ $quizze->id }}" title="حذف"><i
