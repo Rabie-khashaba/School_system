@@ -42,7 +42,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::get('/' , [HomeController::class , 'index'])->name('selection'); //
 
 Route::get('login/{type}', [LoginController::class , 'loginForm'])->middleware('guest')->name('login.show');
-Route::post('login', [LoginController::class , 'login'])->name('login');
+Route::post('login', [LoginController::class , 'login'])->name('login');  // have Request
 Route::get('logout/{type}', [LoginController::class , 'logout'])->name('logout');
 
 
@@ -91,8 +91,8 @@ Route::group(
 
     //==============================Students============================
     Route::resource('Students', StudentsController::class);
-    Route::get('/Get_classrooms/{id}',[StudentsController::class ,'Get_classrooms']);
-    Route::get('/Get_Sections/{id}',[StudentsController::class ,'Get_Sections']);
+//    Route::get('/Get_classrooms/{id}',[StudentsController::class ,'Get_classrooms']);
+//    Route::get('/Get_Sections/{id}',[StudentsController::class ,'Get_Sections']);
     Route::post('Upload_attachment',[StudentsController::class ,'Upload_attachment'])->name('Upload_attachment');
     Route::get('Download_attachment/{studentsname}/{filename}', [StudentsController::class ,'Download_attachment'])->name('Download_attachment');
     Route::post('Delete_attachment', [StudentsController::class , 'Delete_attachment'])->name('Delete_attachment');

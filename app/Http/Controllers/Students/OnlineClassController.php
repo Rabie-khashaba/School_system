@@ -39,7 +39,7 @@ class OnlineClassController extends Controller
                 'Grade_id' => $request->Grade_id,
                 'Classroom_id' => $request->Classroom_id,
                 'section_id' => $request->section_id,
-                'created_by' => auth()->user()->email,
+                'created_by' => auth()->user()->email,// insert email
                 'meeting_id' => $meeting->id,
                 'topic' => $request->topic,
                 'start_at' => $request->start_time,

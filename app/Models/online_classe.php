@@ -11,9 +11,9 @@ class online_classe extends Model
     use HasFactory;
 
     protected $table = 'online_classes';
-    //public $fillable= ['integration','Grade_id','Classroom_id','section_id','created_by','meeting_id','topic','start_at','duration','password','start_url','join_url'];
+    public $fillable= ['integration','Grade_id','Classroom_id','section_id','created_by','meeting_id','topic','start_at','duration','password','start_url','join_url'];
 
-    protected $guarded = [];
+    //protected $guarded = [];
     public function grade()
     {
         return $this->belongsTo('App\Models\Grade', 'Grade_id');

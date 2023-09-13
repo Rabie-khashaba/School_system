@@ -33,6 +33,8 @@
 {{--Toaster alert--}}
 <script src="cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
+
+{{--Display Error --}}
 <script>
     @if(Session::has('message'))
     var type = "{{Session::get('alert-type','info')}}";
