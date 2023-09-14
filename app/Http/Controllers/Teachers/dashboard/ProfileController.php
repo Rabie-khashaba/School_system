@@ -28,8 +28,13 @@ class ProfileController extends Controller
             $information->Name = ['en' => $request->Name_en, 'ar' => $request->Name_ar];
             $information->save();
         }
-        toastr()->success(trans('messages.Update'));
-        return redirect()->back();
+//        toastr()->success(trans('messages.Update'));
+//        return redirect()->back();
+        $notification = array(
+            'message' => 'Data Has Been Updated successfully',
+            'alert-type'=> 'success',
+        );
+        return redirect()->route('profile.show')->with($notification);
 
 
     }

@@ -89,8 +89,6 @@
     <!-- row closed -->
 @endsection
 @section('js')
-    @toastr_js
-    @toastr_render
     <script>
         function myFunction() {
             var x = document.getElementById("password");
