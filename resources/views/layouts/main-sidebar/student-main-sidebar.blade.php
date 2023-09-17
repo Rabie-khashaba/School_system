@@ -21,9 +21,7 @@
 
 
         <!-- Settings-->
-        <li>
-{{--            "{{route('profile-student.index')}}"--}}
-            <a href=''><i class="fas fa-id-card-alt"></i><span
+        <li>  <a href="{{route('profile-student.index')}}"><i class="fas fa-id-card-alt"></i><span
                     class="right-nav-text">الملف الشخصي</span></a>
         </li>
 

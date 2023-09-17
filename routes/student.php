@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\Exams\ExamsController;
+
+use App\Http\Controllers\Students\dashboard\ExamsController;
+use App\Http\Controllers\Students\dashboard\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -27,9 +29,9 @@ Route::group(
         return view('pages.Students.dashboard');
     })->name('dashboard.Students');
 
-    Route::group(['namespace' => 'Students\dashboard'], function () {
-        Route::resource('student_exams', ExamsController::class);
-       //Route::resource('profile-student', 'ProfileController');
-    });
+
+    Route::resource('student_exams', ExamsController::class);
+    Route::resource('profile-student', ProfileController::class);
+
 
 });
