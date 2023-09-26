@@ -13,12 +13,15 @@ class ShowQuestion extends Component
     public function render()
     {
         $this->data = Question::where('quizze_id', $this->quizze_id)->get();
+         //dd($this->data);
         $this->questioncount = $this->data->count();
         return view('livewire.show-question', ['data']);
     }
 
     public function nextQuestion($question_id, $score, $answer, $right_answer)
     {
+
+        //dd($right_answer);
         $stuDegree = Degree::where('student_id', $this->student_id)
             ->where('quizze_id', $this->quizze_id)
             ->first();
@@ -28,6 +31,8 @@ class ShowQuestion extends Component
             $degree->quizze_id = $this->quizze_id;
             $degree->student_id = $this->student_id;
             $degree->question_id = $question_id;
+
+            //strcmp--> compare by character to two words
             if (strcmp(trim($answer), trim($right_answer)) === 0) {
                 $degree->score += $score;
             } else {
@@ -56,8 +61,10 @@ class ShowQuestion extends Component
             }
         }
 
+        // to enter to next question
         if ($this->counter < $this->questioncount - 1) {
             $this->counter++;
+
         } else {
             toastr()->success('تم إجراء الاختبار بنجاح');
             return redirect('student_exams');

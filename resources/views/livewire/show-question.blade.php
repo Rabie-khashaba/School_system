@@ -6,7 +6,7 @@
 
                 @foreach(preg_split('/(-)/', $data[$counter]->answers) as $index=>$answer)
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="customRadio{{$index}}" name="customRadio" class="custom-control-input" inh>
+                        <input type="radio" id="customRadio{{$index}}" name="customRadio" class="custom-control-input" >
                         <label class="custom-control-label" for="customRadio{{$index}}" wire:click="nextQuestion({{$data[$counter]->id}}, {{$data[$counter]->score}}, '{{$answer}}', '{{$data[$counter]->right_answer}}')"> {{$answer}}</label>
                     </div>
                 @endforeach

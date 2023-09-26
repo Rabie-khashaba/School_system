@@ -9,17 +9,6 @@ use Illuminate\Http\Request;
 class QuestionController extends Controller
 {
 
-
-
-    // go to page create by id
-    public function show($id)
-    {
-        $quizz_id = $id;
-        return view('pages.Teachers.dashboard.Questions.create', compact('quizz_id'));
-    }
-
-
-
     public function store(Request $request)
     {
         try {
@@ -30,17 +19,19 @@ class QuestionController extends Controller
             $question->score = $request->score;
             $question->quizze_id = $request->quizz_id;
             $question->save();
-            $notification = array(
-                'message' => 'Data Has Been saved successfully',
-                'alert-type'=> 'success',
-            );
-            return redirect()->route('quizzes.index')->with($notification);
+            toastr()->success(trans('messages.success'));
+            return redirect()->back();
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
     }
 
 
+    public function show($id)
+    {
+        $quizz_id = $id;
+        return view('pages.Teachers.dashboard.Questions.create', compact('quizz_id'));
+    }
 
 
     public function edit($id)
@@ -58,11 +49,9 @@ class QuestionController extends Controller
             $question->answers = $request->answers;
             $question->right_answer = $request->right_answer;
             $question->score = $request->score;
-            $notification = array(
-                'message' => 'Data Updated successfully',
-                'alert-type'=> 'success',
-            );
-            return redirect()->route('quizzes.index')->with($notification);
+            $question->save();
+            toastr()->success(trans('messages.Update'));
+            return redirect()->back();
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
@@ -73,11 +62,8 @@ class QuestionController extends Controller
     {
         try {
             Question::destroy($id);
-            $notification = array(
-                'message' => 'Data Has Been saved successfully',
-                'alert-type'=> 'error',
-            );
-            return redirect()->route('quizzes.index')->with($notification);
+            toastr()->error(trans('messages.Delete'));
+            return redirect()->back();
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }

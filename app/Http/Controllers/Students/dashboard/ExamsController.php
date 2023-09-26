@@ -36,6 +36,8 @@ class ExamsController extends Controller
     public function show($quizze_id)
     {
 
+        //return $quizze_id;
+
         $student_id = Auth::user()->id;
         return view('pages.Students.dashboard.exams.show',compact('quizze_id','student_id'));
     }
@@ -43,7 +45,7 @@ class ExamsController extends Controller
 
     public function edit($id)
     {
-        //
+
     }
 
 

@@ -34,7 +34,7 @@
             </a>
             <ul id="sections-menu" class="collapse" data-parent="#sidebarnav">
                 <li><a href="{{route('quizzes.index')}}">قائمة الاختبارات</a></li>
-                <li><a href="{{route('question.index')}}">قائمة الاسئلة</a></li>
+                <li><a href="">قائمة الاسئلة</a></li>
             </ul>
         </li>
 
