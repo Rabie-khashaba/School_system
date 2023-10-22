@@ -15,8 +15,6 @@
 @section('content')
     <!-- row -->
 
-
-
     <div class="card-body">
 
         <section style="background-color: #eee;">
@@ -27,18 +25,17 @@
                             <img src="{{URL::asset('assets/images/teacher.png')}}"
                                  alt="avatar"
                                  class="rounded-circle img-fluid" style="width: 150px;">
-                            <h5 style="font-family: Cairo" class="my-3">{{$information->name}}</h5>
+                            <h5 style="font-family: Cairo" class="my-3">{{$information->Name}}</h5>
                             <p class="text-muted mb-1">{{$information->email}}</p>
-                            <p class="text-muted mb-4">طالب</p>
+                            <p class="text-muted mb-4">ولي امر</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <form action="{{route('profile-student.update',$information->id)}}" method="post">
+                            <form action="{{route('profile.update.parent',$information->id)}}" method="post">
                                 @csrf
-                                @method('PUT')
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <p class="mb-0">اسم المستخدم باللغة العربية</p>
@@ -46,7 +43,7 @@
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">
                                             <input type="text" name="Name_ar"
-                                                   value="{{ $information->getTranslation('name', 'ar') }}"
+                                                   value="{{ $information->getTranslation('Name_Father', 'ar') }}"
                                                    class="form-control">
                                         </p>
                                     </div>
@@ -59,7 +56,7 @@
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">
                                             <input type="text" name="Name_en"
-                                                   value="{{ $information->getTranslation('name', 'en') }}"
+                                                   value="{{ $information->getTranslation('Name_Father', 'en') }}"
                                                    class="form-control">
                                         </p>
                                     </div>
@@ -90,7 +87,8 @@
     <!-- row closed -->
 @endsection
 @section('js')
-
+    @toastr_js
+    @toastr_render
     <script>
         function myFunction() {
             var x = document.getElementById("password");
