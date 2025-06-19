@@ -15,6 +15,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
+use Illuminate\Support\Facades\Http;
+
+
 /*
 |--------------------------------------------------------------------------
 | Teacher Routes
@@ -69,6 +72,29 @@ Route::group(
         //get Grades ,classes , sections
 //        Route::get('/Get_classrooms/{id}',[StudentController::class ,'Get_classrooms']);
 //        Route::get('/Get_Sections/{id}',[StudentController::class ,'Get_Sections']);
+
+    Route::get('/zoom/meetings', function () {
+        $accessToken = session('U779fKccQaKz6ztbHSqJ2g');
+
+//        if (!$accessToken) {
+//            return redirect('/zoom/auth')->with('error', 'Zoom authorization required!');
+//        }
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $accessToken,
+            'Content-Type'  => 'application/json',
+        ])->post('https://api.zoom.us/v2/users/me/meetings', [
+            'topic'      => 'Laravel Zoom Meeting',
+            'type'       => 2, // Scheduled Meeting
+            'start_time' => now()->addHour()->toIso8601String(),
+            'duration'   => 30,
+            'timezone'   => 'UTC',
+            'password'   => '123456',
+            'agenda'     => 'Discussion about Laravel Integration',
+        ]);
+
+        return $response->json();
+    });
 
 
 });

@@ -149,7 +149,9 @@ class ClassroomController extends Controller
 
 
   public function delete_all(Request $request){
+      //return $request;
       $delete_all_id = explode(",", $request->delete_all_id);
+
       // dd($delete_all_id);
 
       Classroom::whereIn('id', $delete_all_id)->Delete();  // whereIn take array

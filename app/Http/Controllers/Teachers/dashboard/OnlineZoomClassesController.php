@@ -8,6 +8,8 @@ use App\Models\Grade;
 use App\Models\online_classe;
 use Illuminate\Http\Request;
 use MacsiDigital\Zoom\Facades\Zoom;
+use Illuminate\Support\Facades\Http;
+
 
 class OnlineZoomClassesController extends Controller
 {
@@ -37,22 +39,49 @@ class OnlineZoomClassesController extends Controller
     {
         try {
 
-            $meeting = $this->createMeeting($request);
+//            $meeting = $this->createMeeting($request);
+//
+//            online_classe::create([
+//                'integration' => true,
+//                'Grade_id' => $request->Grade_id,
+//                'Classroom_id' => $request->Classroom_id,
+//                'section_id' => $request->section_id,
+//                'created_by' => auth()->user()->email,
+//                'meeting_id' => $meeting->id,
+//                'topic' => $request->topic,
+//                'start_at' => $request->start_time,
+//                'duration' => $meeting->duration,
+//                'password' => $meeting->password,
+//                'start_url' => $meeting->start_url,
+//                'join_url' => $meeting->join_url,
+//            ]);
 
-            online_classe::create([
-                'integration' => true,
-                'Grade_id' => $request->Grade_id,
-                'Classroom_id' => $request->Classroom_id,
-                'section_id' => $request->section_id,
-                'created_by' => auth()->user()->email,
-                'meeting_id' => $meeting->id,
-                'topic' => $request->topic,
-                'start_at' => $request->start_time,
-                'duration' => $meeting->duration,
-                'password' => $meeting->password,
-                'start_url' => $meeting->start_url,
-                'join_url' => $meeting->join_url,
+
+            $accessToken = "U779fKccQaKz6ztbHSqJ2g"; // Replace with your actual token
+
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $accessToken,
+                'Content-Type' => 'application/json',
+            ])->post('https://api.zoom.us/v2/users/me/meetings', [
+                'topic'      => 'Laravel Zoom API Meeting',
+                'type'       => 2, // Scheduled meeting
+                'start_time' => '2024-03-21T15:00:00Z', // UTC time format
+                'duration'   => 30, // Meeting duration in minutes
+                'timezone'   => 'UTC',
+                'agenda'     => 'Laravel Zoom API Integration',
+                'settings'   => [
+                    'host_video'         => true,
+                    'participant_video'  => true,
+                    'join_before_host'   => false,
+                    'mute_upon_entry'    => true,
+                    'waiting_room'       => true,
+                ],
             ]);
+
+// Convert response to array
+            $data = $response->json();
+            dd($data);
+
             toastr()->success(trans('messages.success'));
             return redirect()->route('online_zoom_classes.index');
         } catch (\Exception $e) {

@@ -113,7 +113,7 @@ class QuizzesController extends Controller
     public function student_quizze($quizze_id)
     {
         $degrees = Degree::where('quizze_id', $quizze_id)->get();
-        return view('pages.Teachers.dashboard.Quizzes.student_quizze', compact('degrees'));
+                return view('pages.Teachers.dashboard.Quizzes.student_quizze', compact('degrees'));
     }
 
     public function repeat_quizze(Request $request)

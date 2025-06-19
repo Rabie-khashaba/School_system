@@ -6,14 +6,14 @@
                 <br>
                 <div class="form-row">
                     <div class="col">
-                        <label for="title">{{trans('Parent_trans.Email')}}</label>
+                        <label for="email">{{trans('Parent_trans.Email')}}</label>
                         <input type="email" wire:model="Email"  class="form-control">
                         @error('Email')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col">
-                        <label for="title">{{trans('Parent_trans.Password')}}</label>
+                        <label for="password">{{trans('Parent_trans.Password')}}</label>
                         <input type="password" wire:model="Password" class="form-control" >
                         @error('Password')
                         <div class="alert alert-danger">{{ $message }}</div>

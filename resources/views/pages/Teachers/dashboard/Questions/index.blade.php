@@ -8,7 +8,7 @@
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-قائمة الاسئلة : <span class="text-danger">{{$quizz->name}}</span>
+قائمة الاسئلة : <span class="text-danger">{{$quizz->name }}</span>
 @stop
 <!-- breadcrumb -->
 @endsection

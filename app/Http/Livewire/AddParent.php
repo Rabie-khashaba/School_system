@@ -316,8 +316,9 @@ class AddParent extends Component
             return redirect()->to('/Add_parent')->with($notification);
         }else{
             // if has count > 0 , delete main and attachment
-            MyParent::findOrFail($id)->delete();
+
             ParentAttachment::where('parent_id' , $id)->delete();
+            MyParent::findOrFail($id)->delete();
             $notification = array(
                 'message' => 'Main Parent And Attachment Deleted successfully',
                 'alert-type'=> 'error',

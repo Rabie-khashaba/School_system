@@ -31,6 +31,7 @@ Class TeacherRepository implements TeacherRepositoryInterface{
             $Teachers->Name = ['en' => $request->Name_en, 'ar' => $request->Name_ar];
             $Teachers->Specialization_id = $request->Specialization_id;
             $Teachers->Gender_id = $request->Gender_id;
+            $Teachers->Grade_id = 2;
             $Teachers->Joining_Date = $request->Joining_Date;
             $Teachers->Address = $request->Address;
             $Teachers->save();

@@ -53,8 +53,6 @@
             break;
     }
     @endif
-
-
 </script>
 
 {{--Delete all --}}

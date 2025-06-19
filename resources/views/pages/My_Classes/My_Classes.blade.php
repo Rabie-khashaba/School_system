@@ -32,9 +32,9 @@
                     <button type="button" class="button x-small" data-toggle="modal" data-target="#exampleModal">
                         {{ trans('My_Classes_trans.add_class') }}
                     </button>
-                        <button type="button" class="button x-small" id="btn_delete_all">
-                            {{ trans('My_Classes_trans.delete_checkbox') }}
-                        </button>
+                    <button type="button" class="button x-small" id="btn_delete_all">
+                        {{ trans('My_Classes_trans.delete_checkbox') }}
+                    </button>
 
                         <br><br>
 
@@ -346,7 +346,7 @@
 
             if (selected.length > 0) {
                 $('#delete_all').modal('show')
-                $('input[id="delete_all_id"]').val(selected);  // input inside modal to carry all id in array selected
+                $('input[id="delete_all_id"]').val(selected);  // put selected array inside delete_all_id
             }
         });
     });

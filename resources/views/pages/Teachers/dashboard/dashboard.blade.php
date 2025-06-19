@@ -221,7 +221,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @forelse(\App\Models\My_Parent::latest()->take(5)->get() as $parent)
+                                                @forelse(\App\Models\MyParent::latest()->take(5)->get() as $parent)
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
                                                         <td>{{$parent->Name_Father}}</td>
@@ -260,7 +260,7 @@
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
                                                         <td>{{$section->invoice_date}}</td>
-                                                        <td>{{$section->My_classs->Name_Class}}</td>
+                                                        <td>{{$section->classroom->Name}}</td>
                                                         <td class="text-success">{{$section->created_at}}</td>
                                                     </tr>
                                                 @empty

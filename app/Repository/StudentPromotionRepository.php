@@ -37,7 +37,7 @@ class StudentPromotionRepository implements StudentPromotionRepositoryInterface
             // update in table student
             foreach ($students as $student){
 
-                $ids = explode(',',$student->id); // get ids of students in array
+                $ids = explode(',',$student->id); // get id of students in array
                 student::whereIn('id', $ids)
                     ->update([
                         'Grade_id'=>$request->Grade_id_new,

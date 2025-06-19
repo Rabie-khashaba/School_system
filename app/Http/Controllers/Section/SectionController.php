@@ -37,16 +37,8 @@ class SectionController extends Controller
             $my_sections->save();
 
             //Add id in pivot table
-            //$my_sections->teachers()->attach($request->teacher_id); // get id of teacher
+            $my_sections->teachers()->attach($request->teacher_id); // get id of teacher
 
-            $section_teacher = new Teacher_Section();
-
-            foreach ($request->teacher_id as $ids){
-                $section_teacher->section_id = $my_sections->id;
-                $section_teacher->teacher_id = $ids;
-            }
-
-            $section_teacher->save();
 
             DB::commit();
             $notification = array(

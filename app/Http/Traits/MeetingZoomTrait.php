@@ -9,6 +9,7 @@ trait MeetingZoomTrait
     public function createMeeting($request){
 
         $user = Zoom::user()->first();
+        //dd($user);
 
         $meetingData = [
             'topic' => $request->topic,

@@ -11,7 +11,7 @@
             <div class="modal-body">
                 <form action="{{route('Graduated.GraduateOneStudent','test')}}" method="post">
                     @csrf
-                    <input type="hidden" name="id" value="{{$promotion->id}}">
+                    <input type="hidden" name="id" value="{{$promotion->student->id}}">
                     <h5 style="font-family: 'Cairo', sans-serif;">هل انت متاكد من عملية تخرج الطالب ؟ {{$promotion->student->name}}</h5>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('Students_trans.Close')}}</button>

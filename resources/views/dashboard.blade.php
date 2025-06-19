@@ -300,7 +300,7 @@ preloader -->
                                                 <tr>
                                                     <td>{{$loop->iteration}}</td>
                                                     <td>{{$section->invoice_date}}</td>
-                                                    <td>{{$section->My_classs->Name}}</td>
+                                                    <td>{{$section->classroom->Name}}</td>
                                                     <td class="text-success">{{$section->created_at}}</td>
                                                 </tr>
                                             @empty
