@@ -60,7 +60,6 @@
                                         <label for="inputState">الصف الدراسي</label>
                                         <select name="Class_id" class="custom-select">
 
-
                                         </select>
                                     </div>
 

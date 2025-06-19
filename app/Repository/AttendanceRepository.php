@@ -38,6 +38,7 @@ class AttendanceRepository implements AttendanceRepositoryInterface
                     $attendence_status = false;
                 }
 
+
                 Attendance::create([
                     'student_id'=> $studentid,
                     'grade_id'=> $request->grade_id,
